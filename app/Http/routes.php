@@ -10,6 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::get('/', function() {return 'forbidden'});
+Route::get('/', function() {return 'forbidden';});
 
-//Route::get('/api/login/');
+Route::post('/api/login/', 'UserController@login');
+Route::post('/api/register/', 'UserController@register');
