@@ -37,8 +37,6 @@ class ApiController extends Controller
 
 	public static function decrypt($sValue, $sSecretKey)
 	{
-		// $sValue = $_POST['val'];
-		// $sSecretKey = $_POST['key'];
 	    return rtrim(
 	        mcrypt_decrypt(
 	            MCRYPT_RIJNDAEL_256, 
@@ -117,7 +115,7 @@ class ApiController extends Controller
 
 		$sso = \SSO\SSO::getUser();
 
-		if($sso->username != "putu.wira31" && $sso->username != "bimo.prasetyo" && $sso->username != "putu.wira31")
+		if($sso->username != "putu.wira31" && $sso->username != "bimo.prasetyo" && $sso->username != "andi.fajar" && $sso->username != "m.risky" && $sso->username != "bayu.rahman")
 			return "forbidden";
 
 		return \View::make('api/docs');
