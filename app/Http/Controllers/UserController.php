@@ -11,16 +11,31 @@ use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
+    public static function getData($token) {
+        $username = app('App\Http\Controllers\ApiController')->getUsername($token);
+        $iduser = app('App\Http\Controllers\ApiController')->getId($token);
+
+        return JSON_encode(['id' => $iduser, 'username' => $username]);
+    }
+
+    public static function getToken($user, $id) {
+        $str = $user."7890$".$id."0987";
+        $token = app('App\Http\Controllers\ApiController')->encrypt($str, 1409199511041995);
+        return $token;
+    }
+
     function login() {        
         $credentials = \Request::only('name', 'password');
         $remember = \Request::has('remember');
         if (\Auth::attempt($credentials, $remember)) {
-            return JSON_encode(['status' => '1']);
+            $token = $this->getToken(\Auth::user()->name, \Auth::user()->id);
+            return JSON_encode(['status' => '1', 'token' => $token]);
         }
 
         $credentials = \Request::only('email', 'password');
         if (\Auth::attempt($credentials, $remember)) {
-            return JSON_encode(['status' => '1']);
+            $token = $this->getToken(\Auth::user()->name, \Auth::user()->id);
+            return JSON_encode(['status' => '1', 'token' => $token]);
         }
 
         $msg = "Password atau Username salah";
@@ -37,8 +52,10 @@ class UserController extends Controller
         $user->email = $email;
         $user->password = \Hash::make('password');
 
-        if($user->save())
-            return JSON_encode(['status' => '1']);
+        if($user->save()) {
+            $token = $this->getToken($user->name, $user->id);
+            return JSON_encode(['status' => '1', 'token' => $token]);
+        }
 
         return JSON_encode(['status' => '0']);
     }

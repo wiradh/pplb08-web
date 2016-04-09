@@ -12,5 +12,7 @@
 */
 Route::get('/', function() {return 'forbidden';});
 
+// API ROUTES
+Route::get('/api/getData/{token}', 'UserController@getData');
 Route::post('/api/login/', 'UserController@login');
 Route::post('/api/register/', 'UserController@register');
