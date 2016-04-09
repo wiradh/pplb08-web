@@ -24,7 +24,17 @@ class UserController extends Controller
         return $token;
     }
 
-    function login() {        
+    function getDetails($type) {
+        $token = \Request::input('token');
+
+        $data = JSON_decode($this->getData($token));
+
+        $user = \App\User::where("id", "=", $data->id)->first();
+
+        return JSON_encode($user);
+    }
+
+    function login($type) {        
         $credentials = \Request::only('name', 'password');
         $remember = \Request::has('remember');
         if (\Auth::attempt($credentials, $remember)) {
@@ -42,7 +52,7 @@ class UserController extends Controller
         return JSON_encode(['status' => '0']);
     }
 
-    function register() {
+    function register($type) {
         $name = \Request::input('name');
         $email = \Request::input('email');
         $password = \Request::input('password');
@@ -50,13 +60,17 @@ class UserController extends Controller
         $user = new \App\User();
         $user->name = $name;
         $user->email = $email;
+        $user->role = "CU";
+        $user->remember_token = "";
         $user->password = \Hash::make('password');
 
-        if($user->save()) {
+        if($type == "sandbox" || $user->save()) {
             $token = $this->getToken($user->name, $user->id);
             return JSON_encode(['status' => '1', 'token' => $token]);
         }
 
         return JSON_encode(['status' => '0']);
     }
+
+
 }

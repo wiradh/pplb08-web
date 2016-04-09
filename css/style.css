@@ -1,0 +1,119 @@
+body {
+  background-color : #30383b;
+}
+nav {
+  background-color: #8e181b;
+}
+footer {
+  background-color: #8e181b !important;
+}
+.footer-copyright {
+  background-color: #6d0d0f !important;
+}
+h5 {
+  margin:0px;
+}
+pre {
+  border: 1px solid #3d566e;
+  background-color:#eeeeee;
+  padding:10px;
+  margin:10px;
+  font-size:11px;
+}
+.wrap {
+  margin-left:10%;
+  margin-right:10%;
+}
+.wrap2 {
+  margin-left:10%;
+  margin-right:10%;
+}
+.nav-wrapper {
+  padding-left :10px;
+}
+.parallax-container {
+  height: 150px;
+}
+.slider {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.slider .indicators .indicator-item.active {
+  background-color: #8e181b;
+}
+.atas {
+  position:fixed;
+  top: 0px;
+  z-index:10;
+}
+.gambarpmb {
+  transition:1s ease;
+  -o-filter: grayscale(100%);-webkit-filter: grayscale(100%); filter: grayscale(100%);
+  opacity:0.4;
+}
+.gambarpmb:hover {
+  -o-filter: grayscale(0%);-webkit-filter: grayscale(0%); filter: grayscale(0%);
+  opacity:1;
+}
+
+.rowpersonal {
+  background-color: #1a194d;
+  margin-top:20px;display:table;
+}
+
+.sidebar {
+  background-color: #1a194d;
+  color: #ffffff;
+  padding: 0px !important;
+  height:100%;
+  display: table-cell;
+}
+
+.content {
+  background-color: #ffffff;
+  padding: 0px !important;
+  height:100%;
+  display:table-cell;
+}
+
+.textcontent {
+  padding: 20px;
+  padding-top: 0px;
+}
+
+.textcontent p {
+  color: #3f3f3f;
+}
+
+.infosidebar {
+  padding-left:15px;
+  padding-right:15px;
+}
+
+.infosidebar p {
+  color : #ffffff;
+}
+
+.infoterang {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #222461;
+}
+
+.kontak {
+  margin-bottom: 5px;
+}
+
+.editprofile1 {
+  background-color: #ffffff;
+  padding: 20px !important;
+}
+
+.isi-library p {
+  font-size: 11pt;
+  color:#000000;
+}
+
+.linkkontak:hover {
+  text-decoration:underline;
+};

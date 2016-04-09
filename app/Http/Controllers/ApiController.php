@@ -107,4 +107,19 @@ class ApiController extends Controller
 
 		return $toko;
 	}
+
+	function logout(){
+		\SSO\SSO::logout();
+	}
+
+	function documentation() {
+		\SSO\SSO::authenticate();
+
+		$sso = \SSO\SSO::getUser();
+
+		if($sso->username != "putu.wira31" && $sso->username != "bimo.prasetyo" && $sso->username != "putu.wira31")
+			return "forbidden";
+
+		return \View::make('api/docs');
+	}
 }

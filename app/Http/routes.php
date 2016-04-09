@@ -12,7 +12,12 @@
 */
 Route::get('/', function() {return 'forbidden';});
 
+Route::get('/docs', 'ApiController@documentation');
+Route::get('/docs/logout', 'ApiController@logout');
+
 // API ROUTES
 Route::get('/api/getData/{token}', 'UserController@getData');
-Route::post('/api/login/', 'UserController@login');
-Route::post('/api/register/', 'UserController@register');
+
+Route::post('/{type}/login/', 'UserController@login');
+Route::post('/{type}/register/', 'UserController@register');
+Route::post('/{type}/getDetails/', 'UserController@getDetails');
