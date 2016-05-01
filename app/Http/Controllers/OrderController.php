@@ -6,11 +6,22 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+/**
+* Kelas Controller yang mengatur alur Order, menampilkan order, melakukan order
+* dan filtering order berdasarkan kriteria tertentu
+*
+* @author Putu Wira Astika Dharma
+* @version 1/05/2016
+*/
 class OrderController extends Controller
 {
+    /*
+    * Method untuk melakukan order
+    */
     function order($type){
     	$token = \Request::input('token');
 
+        // ekstraksi token menjadi user id dan username
         $data = JSON_decode(app('App\Http\Controllers\UserController')->getData($token));
 
     	$user = \App\User::where("id", "=", $data->id)->first();
@@ -38,10 +49,15 @@ class OrderController extends Controller
             return JSON_encode(['status' => '1']);
         }
     }
+
+    /*
+    * Mendapatkan order tertentu yang dilakukan terhadap satu penyedia tertentu
+    */
     function getOrderByPenyedia($type){
     	$id_penyedia = \Request::input('id_penyedia');
     	$token = \Request::input('token');
 
+        // ekstraksi token menjadi user id dan username
         $data = JSON_decode(app('App\Http\Controllers\UserController')->getData($token));
 
     	$user = \App\User::where("id", "=", $data->id)->first();
@@ -56,9 +72,14 @@ class OrderController extends Controller
 
     }
 
+    /*
+    * Mendapatkan semua order pelanggan yang masih pending
+    * Berguna untuk lelang order bagi para penyedia laundry
+    */
     function getPendingOrder($type){
     	$token = \Request::input('token');
 
+        // ekstraksi token menjadi user id dan username
         $data = JSON_decode(app('App\Http\Controllers\UserController')->getData($token));
 
     	$user = \App\User::where("id", "=", $data->id)->first();
@@ -72,10 +93,16 @@ class OrderController extends Controller
     	return JSON_encode(['status' => '1' , 'order' => $hasil]);
 
     }
+
+    /*
+    * mendapatkan order berdasarkan order id tertentu
+    * berguna untuk menampilkan spesifik order tertentu
+    */
     function getOrderById($type){
      	$id = \Request::input('id');
     	$token = \Request::input('token');
 
+        // ekstraksi token menjadi user id dan username
         $data = JSON_decode(app('App\Http\Controllers\UserController')->getData($token));
 
     	$user = \App\User::where("id", "=", $data->id)->first();
@@ -89,8 +116,14 @@ class OrderController extends Controller
     	return JSON_encode(['status' => '1' , 'order' => $hasil]);
     }
 
+    /*
+    * Mendapatkan semua order yang sudah tidk lagi pending
+    * namun belum completed pada suatu pelanggan tertentu
+    */
     function getActiveOrder($type) {
     	$token = \Request::input('token');
+
+        // ekstraksi token menjadi user id dan username
         $data = JSON_decode(app('App\Http\Controllers\UserController')->getData($token));
 
         $pending = \App\Order::where('id_pelanggan', '=', $data->id)->where('status', '=', '0')->get();
@@ -104,8 +137,14 @@ class OrderController extends Controller
         return JSON_encode(['status' => '1', 'pending' => $pending, 'accepted' => $accepted, 'ongoing' => $ongoing, 'done' => $done]);
     }
 
+    /*
+    * Mendapatkan order yang sudah selesai (history)
+    * untuk satu pelanggan tertentu
+    */
     function getCompletedOrder($type) {
     	$token = \Request::input('token');
+
+        // ekstraksi token menjadi user id dan username
         $data = JSON_decode(app('App\Http\Controllers\UserController')->getData($token));
 
         $completed = \App\Order::where('id_pelanggan', '=', $data->id)->where('status', '=', '5')->get();
@@ -113,9 +152,16 @@ class OrderController extends Controller
         return JSON_encode(['status' => '1', 'completed' => $completed]);
     }
 
+    /*
+    * Mendapatkan order order yang sudah dinyatakan selesai
+    * namun bergantung pada order yang dilakukan suatu penyedia tertentu
+    */
     function getCompletedOrderByPenyedia($type) {
     	$token = \Request::input('token');
+
+        // ekstraksi token menjadi user id dan username
         $data = JSON_decode(app('App\Http\Controllers\UserController')->getData($token));
+        
         $user = \App\User::where("id", "=", $data->id)->first();
 
         $completed = \App\Order::where('id_penyedia', '=', $user->id_penyedia)->where('status', '=', '5')->get();

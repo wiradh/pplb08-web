@@ -4,6 +4,12 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+/**
+* Model class untuk user, authenticable yang artinya objek ini digunakan untuk login
+*
+* @author Putu Wira Astika Dharma
+* @version 10/04/2016
+*/
 class User extends Authenticatable
 {
     /**

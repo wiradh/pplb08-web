@@ -6,6 +6,13 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+/**
+* Kelas berguna untuk keperluan API Request dan pemanggilan API
+* SEMUA API SANDBOX HANYA AKAN DIJALANKAN TAPI TIDAK ADA PROSES SAVING DATA
+*
+* @author Putu Wira Astika Dharma
+* @version 10/04/2016
+*/
 class ApiController extends Controller
 {
 	/*
@@ -16,6 +23,9 @@ class ApiController extends Controller
 	*
 	*/
 
+	/*
+	* Untuk encrypt token
+	*/
     public static function encrypt($sValue, $sSecretKey)
 	{
 	    return rtrim(
@@ -35,6 +45,9 @@ class ApiController extends Controller
 	        );
 	}
 
+	/*
+	* Untuk decrypt token
+	*/
 	public static function decrypt($sValue, $sSecretKey)
 	{
 	    return rtrim(
@@ -54,6 +67,9 @@ class ApiController extends Controller
 	    );
 	}
 
+	/*
+	* Untuk Extract Token menjadi Username
+	*/
 	public static function getUsername($token) {
 		$sValue = $token;
 		$sSecretKey = 1409199511041995;
@@ -80,6 +96,9 @@ class ApiController extends Controller
 		return $toko;
 	}
 
+	/*
+	* Extract Token menjadi Id User
+	*/
 	public static function getId($token) {
 		$sValue = $token;
 		$sSecretKey = 1409199511041995;
@@ -106,10 +125,16 @@ class ApiController extends Controller
 		return $toko;
 	}
 
+	/*
+	* Fungsi Logout untuk user ketika melihat dokumentasi
+	*/
 	function logout(){
 		\SSO\SSO::logout();
 	}
 
+	/*
+	* Authenthication dan Role handling untuk guard siapa saja yang bisa akses dokumentasi API
+	*/
 	function documentation() {
 		\SSO\SSO::authenticate();
 

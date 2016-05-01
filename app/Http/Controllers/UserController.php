@@ -9,8 +9,19 @@ use App\Models\CustomerPackage;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+/**
+* Kelas Controller mengatur flow terkhusus untuk User
+* Login, Register, getData, details, dll
+*
+* @author Putu Wira Astika Dharma
+* @version 10/04/2016
+*/
 class UserController extends Controller
 {
+    /*
+    * Extraksi token menjadi Data userid dan username
+    * digunakan untuk semua API
+    */
     public static function getData($token) {
         $username = app('App\Http\Controllers\ApiController')->getUsername($token);
         $iduser = app('App\Http\Controllers\ApiController')->getId($token);
@@ -18,12 +29,18 @@ class UserController extends Controller
         return JSON_encode(['id' => $iduser, 'username' => $username]);
     }
 
+    /*
+    * melakukan konversi dari user id dan username menjadi sebuah token
+    */
     public static function getToken($user, $id) {
         $str = $user."7890$".$id."0987";
         $token = app('App\Http\Controllers\ApiController')->encrypt($str, 1409199511041995);
         return $token;
     }
 
+    /*
+    * mendapatkan details user tertentu
+    */
     function getDetails($type) {
         $token = \Request::input('token');
 
@@ -34,6 +51,9 @@ class UserController extends Controller
         return JSON_encode($user);
     }
 
+    /*
+    * fungsi login, menggunaan (username atau email) dan password
+    */
     function login($type) {        
         $credentials = \Request::only('name', 'password');
         $remember = \Request::has('remember');
@@ -52,6 +72,9 @@ class UserController extends Controller
         return JSON_encode(['status' => '0']);
     }
 
+    /*
+    * Fungsi register pelanggan baru
+    */
     function register($type) {
         $name = \Request::input('name');
         $email = \Request::input('email');
@@ -65,7 +88,7 @@ class UserController extends Controller
             return JSON_encode(['status' => '0']);
 
         $user->email = $email;
-        $user->role = "CU";
+        $user->role = "CU"; //PELANGGAN
         $user->remember_token = "";
         $user->password = \Hash::make('password');
 
