@@ -8,7 +8,7 @@ use App\Http\Requests;
 
 class OrderController extends Controller
 {
-    public function order($type){
+    function order($type){
     	$token = \Request::input('token');
 
         $data = JSON_decode($this->getData($token));
@@ -37,7 +37,7 @@ class OrderController extends Controller
             return JSON_encode(['status' => '1']);
         }
     }
-    public function getOrderByPenyedia($type){
+    function getOrderByPenyedia($type){
     	$id_penyedia = \Request::input('id_penyedia');
     	$token = \Request::input('token');
 
@@ -55,7 +55,7 @@ class OrderController extends Controller
 
     }
 
-    public function getPendingOrder($type){
+    function getPendingOrder($type){
     	$token = \Request::input('token');
 
         $data = JSON_decode($this->getData($token));
@@ -71,7 +71,7 @@ class OrderController extends Controller
     	return JSON_encode(['status' => '1' , 'order' => $hasil]);
 
     }
-     public function getOrderById($type){
+    function getOrderById($type){
      	$id = \Request::input('id');
     	$token = \Request::input('token');
 
@@ -84,6 +84,41 @@ class OrderController extends Controller
     	$hasil = \App\Order::where("id_penyedia" , "=" , $id)->first();
         if($hasil == '')
             return JSON_encode(['status' => '0']);
+        
     	return JSON_encode(['status' => '1' , 'order' => $hasil]);
+    }
+
+    function getActiveOrder($type) {
+    	$token = \Request::input('token');
+        $data = JSON_decode(app('App\Http\Controllers\UserController')->getData($token));
+
+        $pending = \App\Order::where('id_pelanggan', '=', $data->id)->where('status', '=', '0')->get();
+
+        $accepted = \App\Order::where('id_pelanggan', '=', $data->id)->where('status', '=', '2')->get();
+
+        $ongoing = \App\Order::where('id_pelanggan', '=', $data->id)->where('status', '=', '3')->get();
+
+        $done = \App\Order::where('id_pelanggan', '=', $data->id)->where('status', '=', '4')->get();
+
+        return JSON_encode(['status' => '1', 'pending' => $pending, 'accepted' => $accepted, 'ongoing' => $ongoing, 'done' => $done]);
+    }
+
+    function getCompletedOrder($type) {
+    	$token = \Request::input('token');
+        $data = JSON_decode(app('App\Http\Controllers\UserController')->getData($token));
+
+        $completed = \App\Order::where('id_pelanggan', '=', $data->id)->where('status', '=', '5')->get();
+
+        return JSON_encode(['status' => '1', 'completed' => $completed]);
+    }
+
+    function getCompletedOrderByPenyedia($type) {
+    	$token = \Request::input('token');
+        $data = JSON_decode(app('App\Http\Controllers\UserController')->getData($token));
+        $user = \App\User::where("id", "=", $data->id)->first();
+
+        $completed = \App\Order::where('id_penyedia', '=', $user->id_penyedia)->where('status', '=', '5')->get();
+
+        return JSON_encode(['status' => '1', 'completed' => $completed]);
     }
 }

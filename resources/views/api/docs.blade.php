@@ -10,6 +10,24 @@
 
     {{createAPI("getDetails", array('token' => 'yPtUr1xcENVlBTv9+5+FP85eUiWqUhLzSQpWS0ppRe4='))}}
 
+    <hr/>
+
+    {{createAPI("getLaundry", array())}}
+
+    <hr/>
+
+    {{createAPI("acceptOrder", array('order_id' => 1, 'token' => 'OjH3\/R6yrrqtvipruqR7eDUktEJwrMNJ92qsYm496gs='))}}
+
+    {{createAPI("takeOrder", array('order_id' => 1, 'token' => 'OjH3\/R6yrrqtvipruqR7eDUktEJwrMNJ92qsYm496gs='))}}
+
+    <hr/>
+
+    {{createAPI("getActiveOrder", array('token' => 'yPtUr1xcENVlBTv9+5+FP85eUiWqUhLzSQpWS0ppRe4='))}}
+
+    {{createAPI("getCompletedOrder", array('token' => 'yPtUr1xcENVlBTv9+5+FP85eUiWqUhLzSQpWS0ppRe4='))}}
+
+    {{createAPI("getCompletedOrderByPenyedia", array('token' => 'OjH3\/R6yrrqtvipruqR7eDUktEJwrMNJ92qsYm496gs='))}}
+
 @endsection
 
 @section("title")

@@ -31,6 +31,7 @@ class Users extends Migration
             $table->string('longitude');
             $table->string('lattitude');
             $table->string('tipe');
+            $table->string('berat');
             $table->string('id_penyedia');
             $table->string('id_pelanggan');
             $table->timestamps();
