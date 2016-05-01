@@ -21,3 +21,12 @@ Route::get('/api/getData/{token}', 'UserController@getData');
 Route::post('/{type}/login/', 'UserController@login');
 Route::post('/{type}/register/', 'UserController@register');
 Route::post('/{type}/getDetails/', 'UserController@getDetails');
+
+Route::post('/{type}/acceptOrder/', 'PenyediaController@acceptOrder');
+Route::post('/{type}/takeOrder/', 'PenyediaController@takeOrder');
+Route::post('/{type}/getLaundry/', 'PenyediaController@getPenyedia');
+
+Route::post('/{type}/getActiveOrder/', 'OrderController@getActiveOrder');
+Route::post('/{type}/getCompletedOrder/', 'OrderController@getCompletedOrder');
+
+Route::post('/{type}/getCompletedOrderByProvider/', 'OrderController@getCompletedOrderByProvider');
