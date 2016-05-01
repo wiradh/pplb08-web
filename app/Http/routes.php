@@ -21,3 +21,7 @@ Route::get('/api/getData/{token}', 'UserController@getData');
 Route::post('/{type}/login/', 'UserController@login');
 Route::post('/{type}/register/', 'UserController@register');
 Route::post('/{type}/getDetails/', 'UserController@getDetails');
+Route::post('/{type}/order/', 'OrderController@order');
+Route::post('/{type}/getOrderByPenyedia/', 'OrderController@getOrderByPenyedia');
+Route::post('/{type}/getOrderById/', 'OrderController@getOrderById');
+Route::post('/{type}/getPendingOrder/', 'OrderController@getPendingOrder');
