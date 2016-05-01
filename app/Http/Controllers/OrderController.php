@@ -10,7 +10,7 @@ class OrderController extends Controller
 {
     function getActiveOrder($type) {
     	$token = \Request::input('token');
-        $data = JSON_decode($this->getData($token));
+        $data = JSON_decode(app('App\Http\Controllers\UserController')->getData($token));
 
         $pending = \App\Order::where('id_pelanggan', '=', $data->id)->where('status', '=', '0')->get();
 
@@ -25,18 +25,19 @@ class OrderController extends Controller
 
     function getCompletedOrder($type) {
     	$token = \Request::input('token');
-        $data = JSON_decode($this->getData($token));
+        $data = JSON_decode(app('App\Http\Controllers\UserController')->getData($token));
 
         $completed = \App\Order::where('id_pelanggan', '=', $data->id)->where('status', '=', '5')->get();
 
         return JSON_encode(['status' => '1', 'completed' => $completed]);
     }
 
-    function getCompletedOrderByProvider($type) {
+    function getCompletedOrderByPenyedia($type) {
     	$token = \Request::input('token');
-        $data = JSON_decode($this->getData($token));
+        $data = JSON_decode(app('App\Http\Controllers\UserController')->getData($token));
+        $user = \App\User::where("id", "=", $data->id)->first();
 
-        $completed = \App\Order::where('id_penyedia', '=', $data->id)->where('status', '=', '5')->get();
+        $completed = \App\Order::where('id_penyedia', '=', $user->id_penyedia)->where('status', '=', '5')->get();
 
         return JSON_encode(['status' => '1', 'completed' => $completed]);
     }

@@ -18,11 +18,11 @@ class PenyediaController extends Controller
     	$order_id = \Request::input('order_id');
     	$token = \Request::input('token');
 
-    	$data = JSON_decode($this->getData($token));
+    	$data = JSON_decode(app('App\Http\Controllers\UserController')->getData($token));
 
     	$user = \App\User::where("id", "=", $data->id)->first();
 
-    	$order = \App\Order::where("id_penyedia", "=", $user->id_penyedia)->where("id", "=", "order_id")->first();
+    	$order = \App\Order::where("id_penyedia", "=", $user->id_penyedia)->where("id", "=", $order_id)->first();
 
     	if($order == "") {
     		return JSON_encode(['status' => '0']);
@@ -43,11 +43,11 @@ class PenyediaController extends Controller
     	$berat = \Request::input('berat');
     	$token = \Request::input('token');
 
-    	$data = JSON_decode($this->getData($token));
+    	$data = JSON_decode(app('App\Http\Controllers\UserController')->getData($token));
 
     	$user = \App\User::where("id", "=", $data->id)->first();
 
-    	$order = \App\Order::where("id_penyedia", "=", $user->id_penyedia)->where("id", "=", "order_id")->first();
+    	$order = \App\Order::where("id_penyedia", "=", $user->id_penyedia)->where("id", "=", $order_id)->first();
 
     	if($order == "") {
     		return JSON_encode(['status' => '0']);

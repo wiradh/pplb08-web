@@ -29,4 +29,4 @@ Route::post('/{type}/getLaundry/', 'PenyediaController@getPenyedia');
 Route::post('/{type}/getActiveOrder/', 'OrderController@getActiveOrder');
 Route::post('/{type}/getCompletedOrder/', 'OrderController@getCompletedOrder');
 
-Route::post('/{type}/getCompletedOrderByProvider/', 'OrderController@getCompletedOrderByProvider');
+Route::post('/{type}/getCompletedOrderByPenyedia/', 'OrderController@getCompletedOrderByPenyedia');
