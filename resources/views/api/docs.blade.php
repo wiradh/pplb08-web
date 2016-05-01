@@ -16,15 +16,22 @@
 
     <hr/>
 
+    {{createAPI("order", array('token' => 'yPtUr1xcENVlBTv9+5+FP85eUiWqUhLzSQpWS0ppRe4=', 'jam_antar' => '12.00', 'jam_ambil' => '13.00', 'longitude' => '212', 'lattitude' => '11', 'tipe' => '1', 'id_penyedia' => '1'))}}
+
     {{createAPI("acceptOrder", array('order_id' => 1, 'token' => 'OjH3\/R6yrrqtvipruqR7eDUktEJwrMNJ92qsYm496gs='))}}
 
     {{createAPI("takeOrder", array('order_id' => 1, 'token' => 'OjH3\/R6yrrqtvipruqR7eDUktEJwrMNJ92qsYm496gs='))}}
 
     <hr/>
+    {{createAPI("getOrderById", array('id' => '1', 'token' => 'OjH3\/R6yrrqtvipruqR7eDUktEJwrMNJ92qsYm496gs='))}}
+
+    {{createAPI("getPendingOrder", array('token' => 'yPtUr1xcENVlBTv9+5+FP85eUiWqUhLzSQpWS0ppRe4='))}}
 
     {{createAPI("getActiveOrder", array('token' => 'yPtUr1xcENVlBTv9+5+FP85eUiWqUhLzSQpWS0ppRe4='))}}
 
     {{createAPI("getCompletedOrder", array('token' => 'yPtUr1xcENVlBTv9+5+FP85eUiWqUhLzSQpWS0ppRe4='))}}
+
+    {{createAPI("getOrderByPenyedia", array('id_penyedia' => 1, 'token' => 'OjH3\/R6yrrqtvipruqR7eDUktEJwrMNJ92qsYm496gs='))}}
 
     {{createAPI("getCompletedOrderByPenyedia", array('token' => 'OjH3\/R6yrrqtvipruqR7eDUktEJwrMNJ92qsYm496gs='))}}
 

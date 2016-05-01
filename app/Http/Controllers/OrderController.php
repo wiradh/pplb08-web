@@ -11,11 +11,12 @@ class OrderController extends Controller
     function order($type){
     	$token = \Request::input('token');
 
-        $data = JSON_decode($this->getData($token));
+        $data = JSON_decode(app('App\Http\Controllers\UserController')->getData($token));
 
     	$user = \App\User::where("id", "=", $data->id)->first();
     	if($user == '')
     		return JSON_encode(['status' => '0']);
+    	
     	$id_pelanggan = $user->id;
     	$jam_antar = \Request::input('jam_antar');
     	$jam_ambil = \Request::input('jam_ambil');
@@ -41,7 +42,7 @@ class OrderController extends Controller
     	$id_penyedia = \Request::input('id_penyedia');
     	$token = \Request::input('token');
 
-        $data = JSON_decode($this->getData($token));
+        $data = JSON_decode(app('App\Http\Controllers\UserController')->getData($token));
 
     	$user = \App\User::where("id", "=", $data->id)->first();
     	if($user == '')
@@ -58,7 +59,7 @@ class OrderController extends Controller
     function getPendingOrder($type){
     	$token = \Request::input('token');
 
-        $data = JSON_decode($this->getData($token));
+        $data = JSON_decode(app('App\Http\Controllers\UserController')->getData($token));
 
     	$user = \App\User::where("id", "=", $data->id)->first();
     	if($user == '')
@@ -75,7 +76,7 @@ class OrderController extends Controller
      	$id = \Request::input('id');
     	$token = \Request::input('token');
 
-        $data = JSON_decode($this->getData($token));
+        $data = JSON_decode(app('App\Http\Controllers\UserController')->getData($token));
 
     	$user = \App\User::where("id", "=", $data->id)->first();
     	if($user == '')

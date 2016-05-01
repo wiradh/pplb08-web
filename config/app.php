@@ -91,7 +91,7 @@ return [
     |
     */
 
-    'key' => env('APP_KEY'),
+    'key' => 'SomeRandomString',
 
     'cipher' => MCRYPT_RIJNDAEL_128,
 
