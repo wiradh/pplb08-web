@@ -36,18 +36,18 @@ class PenyediaController extends Controller
 
     	$user = \App\User::where("id", "=", $data->id)->first();
 
-    	$order = \App\Order::where("id_penyedia", "=", $user->id_penyedia)->where("id", "=", $order_id)->first();
+    	$order = \App\Order::where("status", "=", "0")->where("id", "=", $order_id)->first();
 
     	if($order == "") {
     		return JSON_encode(['status' => '0']);
     	}
 
-    	$order->status = '2';
+    	$order->id_penyedia = $user->id_penyedia;
+        $order->status = '2';
 
     	if($type == "sandbox" || $order->save()) {
             return JSON_encode(['status' => '1']);
         }
-
 
     	return JSON_encode(['status' => '0']);
     }
@@ -65,7 +65,7 @@ class PenyediaController extends Controller
 
     	$user = \App\User::where("id", "=", $data->id)->first();
 
-    	$order = \App\Order::where("id_penyedia", "=", $user->id_penyedia)->where("id", "=", $order_id)->first();
+    	$order = \App\Order::where("status", "=", "2")->where("id_penyedia", "=", $user->id_penyedia)->where("id", "=", $order_id)->first();
 
     	if($order == "") {
     		return JSON_encode(['status' => '0']);

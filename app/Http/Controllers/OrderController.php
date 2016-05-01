@@ -99,17 +99,14 @@ class OrderController extends Controller
     * berguna untuk menampilkan spesifik order tertentu
     */
     function getOrderById($type){
-     	$id = \Request::input('id');
+     	$id = \Request::input('order_id');
     	$token = \Request::input('token');
 
         // ekstraksi token menjadi user id dan username
         $data = JSON_decode(app('App\Http\Controllers\UserController')->getData($token));
 
-    	$user = \App\User::where("id", "=", $data->id)->first();
-    	if($user == '')
-    		return JSON_encode(['status' => '0']);
 
-    	$hasil = \App\Order::where("id_penyedia" , "=" , $id)->first();
+    	$hasil = \App\Order::where("id" , "=" , $id)->first();
         if($hasil == '')
             return JSON_encode(['status' => '0']);
         

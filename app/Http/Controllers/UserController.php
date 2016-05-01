@@ -48,7 +48,9 @@ class UserController extends Controller
 
         $user = \App\User::where("id", "=", $data->id)->first();
 
-        return JSON_encode($user);
+        if($user == "") return JSON_encode(['status' => '0']);
+
+        return JSON_encode(['status' => '1', 'user' => $user]);
     }
 
     /*
