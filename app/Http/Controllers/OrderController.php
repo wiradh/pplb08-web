@@ -48,6 +48,8 @@ class OrderController extends Controller
     		return JSON_encode(['status' => '0']);
 
     	$hasil = \App\Order::where("id_penyedia" , "=" , $id_penyedia)->get();
+        if(count($hasil) == 0)
+            return JSON_encode(['status' => '0']);
 
     	return JSON_encode(['status' => '1' , 'order' => $hasil]);
 
@@ -63,6 +65,8 @@ class OrderController extends Controller
     		return JSON_encode(['status' => '0']);
 
     	$hasil = \App\Order::where("status" , "=" , "0")->get();
+        if(count($hasil) == 0)
+            return JSON_encode(['status' => '0']);
 
     	return JSON_encode(['status' => '1' , 'order' => $hasil]);
 
@@ -78,8 +82,8 @@ class OrderController extends Controller
     		return JSON_encode(['status' => '0']);
 
     	$hasil = \App\Order::where("id_penyedia" , "=" , $id)->first();
-
+        if($hasil == '')
+            return JSON_encode(['status' => '0']);
     	return JSON_encode(['status' => '1' , 'order' => $hasil]);
-
     }
 }
