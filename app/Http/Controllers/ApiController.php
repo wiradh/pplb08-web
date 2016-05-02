@@ -140,7 +140,7 @@ class ApiController extends Controller
 
 		$sso = \SSO\SSO::getUser();
 
-		if($sso->username != "putu.wira31" && $sso->username != "bimo.prasetyo" && $sso->username != "andi.fajar" && $sso->username != "m.risky" && $sso->username != "bayu.rahman")
+		if($sso->username != "putu.wira31" && $sso->username != "bimo.prasetyo" && $sso->username != "andi.fajar" && $sso->username != "m.risky" && $sso->username != "bayu.rahman" && $sso->username != "tegar.aldina")
 			return "forbidden";
 
 		return \View::make('api/docs');
