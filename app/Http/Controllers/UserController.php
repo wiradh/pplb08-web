@@ -101,6 +101,26 @@ class UserController extends Controller
 
         return JSON_encode(['status' => '0']);
     }
+    function setDetails($type) {
+        $token = \Request::input('token');
+
+        $data = JSON_decode($this->getData($token));
+
+        $user = \App\User::where("id", "=", $data->id)->first();
+
+        if($user == "") return JSON_encode(['status' => '0']);
+
+        $nama = \Request::input('nama');
+        $alamat = \Request::input('alamat');
+        $foto = \Request::input('foto');
+        
+        $user->nama = $nama;
+        $user->alamat = $alamat;
+        $user->foto = $foto;
+
+
+        return JSON_encode(['status' => '1']);
+    }
 
 
 }
