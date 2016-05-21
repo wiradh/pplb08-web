@@ -39,3 +39,5 @@ Route::post('/{type}/getActiveOrder/', 'OrderController@getActiveOrder');
 Route::post('/{type}/getCompletedOrder/', 'OrderController@getCompletedOrder');
 Route::post('/{type}/getCompletedOrderByPenyedia/', 'OrderController@getCompletedOrderByPenyedia');
 Route::post('/{type}/setStatusOrderCancelByPengorder/', 'OrderController@setStatusOrderCancelByPengorder');
+
+Route::post('/{type}/changeOrder/', 'OrderController@changeOrder');

@@ -183,4 +183,38 @@ class OrderController extends Controller
         return JSON_encode(['status' => '1']);
     }
 
+
+    /*
+    * Method untuk merubah mekanisme pengambilan
+    */
+    function changeOrder($type){
+        $token = \Request::input('token');
+
+        // ekstraksi token menjadi user id dan username
+        $data = JSON_decode(app('App\Http\Controllers\UserController')->getData($token));
+
+        $user = \App\User::where("id", "=", $data->id)->first();
+        if($user == '')
+            return JSON_encode(['status' => '0']);
+        
+        $id_pelanggan = $user->id;
+        $order_id = \Request::input('order_id');
+        $jam_antar = \Request::input('jam_antar');
+        $jam_ambil = \Request::input('jam_ambil');
+        $tipe = \Request::input('tipe');
+        
+        $order = \App\Order::where("id", "=", $order_id)->first();
+        if($order == '')
+            return JSON_encode(['status' => '0']);
+
+        $order->id_pelanggan = $id_pelanggan;
+        $order->jam_antar = $jam_antar;
+        $order->jam_ambil = $jam_ambil;
+        //$order->tipe = $tipe;
+
+        if($type == 'sandbox' || $order->save()) {
+            return JSON_encode(['status' => '1']);
+        }
+    }
+
 }
