@@ -165,4 +165,22 @@ class OrderController extends Controller
 
         return JSON_encode(['status' => '1', 'completed' => $completed]);
     }
+    function setStatusOrderCancelByPengorder($type) {
+        $token = \Request::input('token');
+
+        // ekstraksi token menjadi user id dan username
+        $data = JSON_decode(app('App\Http\Controllers\UserController')->getData($token));
+        
+        $user = \App\User::where("id", "=", $data->id)->first();
+        if($user == '')
+            return JSON_encode(['status' => '0']);
+        
+        $id = \Request::input('order_id');
+
+        $order = \App\Order::where('id', '=', $id)->first();
+
+        $order->status = '-2';
+        return JSON_encode(['status' => '1']);
+    }
+
 }

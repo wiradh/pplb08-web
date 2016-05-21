@@ -82,4 +82,22 @@ class PenyediaController extends Controller
 
     	return JSON_encode(['status' => '0']);
     }
+
+    function getDetails($type) {
+        $token = \Request::input('token');
+        $data = JSON_decode(app('App\Http\Controllers\UserController')->getData($token));
+        $user = \App\User::where("id", "=", $data->id)->first();
+        if($user == "") {
+            return JSON_encode(['status' => '0']);
+        }       
+
+        $id = \Request::input('id_penyedia');
+        $penyedia = \App\Penyedia::where("id", "=" , $id)->first();
+        if($penyedia == ""){
+            return JSON_encode(['status' => '0']);
+        }
+
+        return JSON_encode(['status' => '0' , 'penyedia' => $penyedia]);
+    }
+
 }
