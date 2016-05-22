@@ -47,6 +47,8 @@ class OrderController extends Controller
         $order->jam_ambil = $jam_ambil;
         $order->longitude = $longitude;
         $order->latitude = $latitude;
+        $order->longitude_laundry = $laundry->longitude;
+        $order->latitude_laundry = $laundry->latitude;
         $order->id_penyedia = $id_penyedia;
         $order->harga = $harga;
         $order->status = '0';
