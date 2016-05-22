@@ -61,13 +61,13 @@ class UserController extends Controller
         $remember = \Request::has('remember');
         if (\Auth::attempt($credentials, $remember)) {
             $token = $this->getToken(\Auth::user()->name, \Auth::user()->id);
-            return JSON_encode(['status' => '1', 'token' => $token]);
+            return JSON_encode(['status' => '1', 'token' => $token, 'role' => \Auth::user()->role]);
         }
 
         $credentials = \Request::only('email', 'password');
         if (\Auth::attempt($credentials, $remember)) {
             $token = $this->getToken(\Auth::user()->name, \Auth::user()->id);
-            return JSON_encode(['status' => '1', 'token' => $token]);
+            return JSON_encode(['status' => '1', 'token' => $token, 'role' => \Auth::user()->role]);
         }
 
         $msg = "Password atau Username salah";
@@ -103,7 +103,7 @@ class UserController extends Controller
 
         return JSON_encode(['status' => '0']);
     }
-    
+
     function setDetails($type) {
         $token = \Request::input('token');
 

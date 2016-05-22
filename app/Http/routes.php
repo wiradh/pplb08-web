@@ -33,7 +33,7 @@ Route::post('/{type}/getPendingOrder/', 'OrderController@getPendingOrder');
 Route::post('/{type}/acceptOrder/', 'PenyediaController@acceptOrder');
 Route::post('/{type}/takeOrder/', 'PenyediaController@takeOrder');
 Route::post('/{type}/getLaundry/', 'PenyediaController@getPenyedia');
-Route::post('/{type}/getDetails/', 'PenyediaController@getDetails');
+Route::post('/{type}/getDetailsLaundry/', 'PenyediaController@getDetails');
 
 Route::post('/{type}/getActiveOrder/', 'OrderController@getActiveOrder');
 Route::post('/{type}/getCompletedOrder/', 'OrderController@getCompletedOrder');
