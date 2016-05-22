@@ -4,7 +4,7 @@
 
     {{createAPI("login", array('name' => 'wiradh', 'password' => 'asdfqwer'))}}
 
-    {{createAPI("register", array('name' => 'wiradh', 'password' => 'asdfqwer', 'email' => 'wira@wira.com'))}}
+    {{createAPI("register", array('name' => 'wiradhaa', 'password' => 'asdfqwer', 'email' => 'wiraa@wira.com', 'nomor_hp' => '0812313123'))}}
 
     <hr/>
 
