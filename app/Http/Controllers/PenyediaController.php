@@ -38,14 +38,14 @@ class PenyediaController extends Controller
 
     	$user = \App\User::where("id", "=", $data->id)->first();
 
-    	$order = \App\Order::where("id_penyedia", "=", $user->id_penyedia)->where("id", "=", $order_id)->first();
+    	$order = \App\Order::where("id", "=", $order_id)->first();
 
     	if($order == "") {
     		return JSON_encode(['status' => '0']);
     	}
 
     	$order->status = $status;
-        if($status == "2" || $status == "3") $order->id_penyedia = $data->id;
+        if($status == "2" || $status == "3") $order->id_penyedia = $user->id_penyedia);
     	if($berat != "" && $berat != null) $order->berat = $berat;
 
 
