@@ -203,7 +203,7 @@ class OrderController extends Controller
     /*
     * Method untuk merubah mekanisme pengambilan
     */
-    function changeOrder($type){
+    function changePengambilanOrder($type){
         $token = \Request::input('token');
 
         // ekstraksi token menjadi user id dan username
