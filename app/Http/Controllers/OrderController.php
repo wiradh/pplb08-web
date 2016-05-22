@@ -177,7 +177,7 @@ class OrderController extends Controller
 
         $completed = \App\Order::where('id_penyedia', '=', $user->id_penyedia)->where('status', '=', '5')->get();
 
-        $completed = \App\Order::where('id_penyedia', '=', $user->id_penyedia)->where('status', '=', '1')->get();
+        $canceled = \App\Order::where('id_penyedia', '=', $user->id_penyedia)->where('status', '=', '1')->get();
 
         return JSON_encode(['status' => '1', 'completed' => $completed, 'canceled' => $canceled]);
     }
