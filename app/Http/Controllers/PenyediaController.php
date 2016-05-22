@@ -45,7 +45,7 @@ class PenyediaController extends Controller
     	}
 
     	$order->status = $status;
-        if($status == "2" || $status == "3") $order->id_penyedia = $user->id_penyedia);
+        if($status == "2" || $status == "3") $order->id_penyedia = $user->id_penyedia;
     	if($berat != "" && $berat != null) $order->berat = $berat;
 
 
