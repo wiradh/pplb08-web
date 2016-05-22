@@ -68,7 +68,7 @@ class OrderController extends Controller
     	if($user == '')
     		return JSON_encode(['status' => '0']);
 
-    	$hasil = \App\Order::where("id_penyedia" , "=" , $data->id_penyedia)->get();
+    	$hasil = \App\Order::where("id_penyedia" , "=" , $user->id_penyedia)->get();
         if(count($hasil) == 0)
             return JSON_encode(['status' => '0']);
 
