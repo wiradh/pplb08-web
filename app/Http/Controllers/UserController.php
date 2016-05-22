@@ -81,6 +81,7 @@ class UserController extends Controller
         $name = \Request::input('name');
         $email = \Request::input('email');
         $password = \Request::input('password');
+        $nomor_hp = \Request::input('nomor_hp');
 
         $user = new \App\User();
         $user->name = $name;
@@ -90,6 +91,7 @@ class UserController extends Controller
             return JSON_encode(['status' => '0']);
 
         $user->email = $email;
+        $user->nomor_hp = $nomor_hp;
         $user->role = "CU"; //PELANGGAN
         $user->remember_token = "";
         $user->password = \Hash::make('password');
@@ -101,6 +103,7 @@ class UserController extends Controller
 
         return JSON_encode(['status' => '0']);
     }
+    
     function setDetails($type) {
         $token = \Request::input('token');
 
