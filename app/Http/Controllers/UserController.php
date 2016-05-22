@@ -63,6 +63,7 @@ class UserController extends Controller
     */
     function login($type) {        
         $credentials = \Request::only('email', 'password');
+        $remember = \Request::has('remember');
         if (\Auth::attempt($credentials, $remember)) {
             $token = $this->getToken(\Auth::user()->name, \Auth::user()->id);
             return JSON_encode(['status' => '1', 'token' => $token, 'role' => \Auth::user()->role, 'name' => \Auth::user()->name, 'email' => \Auth::user()->email]);
