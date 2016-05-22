@@ -36,6 +36,8 @@ class OrderController extends Controller
     	$tipe = \Request::input('tipe');
     	$id_penyedia = \Request::input('id_penyedia');
 
+        $detail_lokasi = \Request::input('detail_lokasi');
+
         $laundry = \App\Penyedia::where("id", "=", $id_penyedia)->first();
         
         $order = new \App\Order();
@@ -48,6 +50,8 @@ class OrderController extends Controller
         $order->status = '0';
         $order->nama_pelanggan = $user->name;
         $order->nama_laundry = $laundry->nama;
+
+        $order->detail_lokasi = $detail_lokasi;
 
 
         if($type == 'sandbox' || $order->save()) {
