@@ -62,17 +62,10 @@ class UserController extends Controller
     * fungsi login, menggunaan (username atau email) dan password
     */
     function login($type) {        
-        $credentials = \Request::only('name', 'password');
-        $remember = \Request::has('remember');
-        if (\Auth::attempt($credentials, $remember)) {
-            $token = $this->getToken(\Auth::user()->name, \Auth::user()->id);
-            return JSON_encode(['status' => '1', 'token' => $token, 'role' => \Auth::user()->role]);
-        }
-
         $credentials = \Request::only('email', 'password');
         if (\Auth::attempt($credentials, $remember)) {
             $token = $this->getToken(\Auth::user()->name, \Auth::user()->id);
-            return JSON_encode(['status' => '1', 'token' => $token, 'role' => \Auth::user()->role]);
+            return JSON_encode(['status' => '1', 'token' => $token, 'role' => \Auth::user()->role, 'name' => \Auth::user()->name, 'email' => \Auth::user()->email]);
         }
 
         $msg = "Password atau Username salah";
