@@ -43,6 +43,7 @@ class UserController extends Controller
     */
     function getDetails($type) {
         $token = \Request::input('token');
+        $id = \Request::input('id');
 
         $data = JSON_decode($this->getData($token));
 
@@ -50,7 +51,11 @@ class UserController extends Controller
 
         if($user == "") return JSON_encode(['status' => '0']);
 
-        return JSON_encode(['status' => '1', 'user' => $user]);
+        $user2 = \App\User::where("id", "=", $id)->first();
+
+        if($user2 == "") return JSON_encode(['status' => '0']);
+
+        return JSON_encode(['status' => '1', 'user' => $user2]);
     }
 
     /*
