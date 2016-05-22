@@ -158,7 +158,9 @@ class OrderController extends Controller
 
         $completed = \App\Order::where('id_pelanggan', '=', $data->id)->where('status', '=', '5')->get();
 
-        return JSON_encode(['status' => '1', 'completed' => $completed]);
+        $canceled = \App\Order::where('id_pelanggan', '=', $data->id)->where('status', '=', '1')->get();
+
+        return JSON_encode(['status' => '1', 'completed' => $completed, 'canceled' => $canceled, ]);
     }
 
     /*
@@ -175,7 +177,9 @@ class OrderController extends Controller
 
         $completed = \App\Order::where('id_penyedia', '=', $user->id_penyedia)->where('status', '=', '5')->get();
 
-        return JSON_encode(['status' => '1', 'completed' => $completed]);
+        $completed = \App\Order::where('id_penyedia', '=', $user->id_penyedia)->where('status', '=', '1')->get();
+
+        return JSON_encode(['status' => '1', 'completed' => $completed, 'canceled' => $canceled]);
     }
     function setStatusOrderCancelByPengorder($type) {
         $token = \Request::input('token');
