@@ -86,9 +86,9 @@ class UserController extends Controller
         $user = new \App\User();
         $user->name = $name;
 
-        // $user2 = \App\User::where("name", "=", $name)->first();
-        // if($user2 != "") 
-        //     return JSON_encode(['status' => '0']);
+        $user2 = \App\User::where("email", "=", $email)->first();
+        if($user2 != "") 
+            return JSON_encode(['status' => '0']);
 
         $user->email = $email;
         $user->nomor_hp = $nomor_hp;
