@@ -54,7 +54,6 @@ class OrderController extends Controller
     * Mendapatkan order tertentu yang dilakukan terhadap satu penyedia tertentu
     */
     function getOrderByPenyedia($type){
-    	$id_penyedia = \Request::input('id_penyedia');
     	$token = \Request::input('token');
 
         // ekstraksi token menjadi user id dan username
@@ -64,7 +63,7 @@ class OrderController extends Controller
     	if($user == '')
     		return JSON_encode(['status' => '0']);
 
-    	$hasil = \App\Order::where("id_penyedia" , "=" , $id_penyedia)->get();
+    	$hasil = \App\Order::where("id_penyedia" , "=" , $data->id)->get();
         if(count($hasil) == 0)
             return JSON_encode(['status' => '0']);
 

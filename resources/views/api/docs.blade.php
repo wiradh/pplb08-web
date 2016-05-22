@@ -31,7 +31,7 @@
 
     {{createAPI("getCompletedOrder", array('token' => 'yPtUr1xcENVlBTv9+5+FP85eUiWqUhLzSQpWS0ppRe4='))}}
 
-    {{createAPI("getOrderByPenyedia", array('id_penyedia' => 1, 'token' => 'OjH3\/R6yrrqtvipruqR7eDUktEJwrMNJ92qsYm496gs='))}}
+    {{createAPI("getOrderByPenyedia", array(token' => 'OjH3\/R6yrrqtvipruqR7eDUktEJwrMNJ92qsYm496gs='))}}
 
     {{createAPI("getCompletedOrderByPenyedia", array('token' => 'OjH3\/R6yrrqtvipruqR7eDUktEJwrMNJ92qsYm496gs='))}}
 
