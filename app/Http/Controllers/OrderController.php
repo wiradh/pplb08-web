@@ -32,7 +32,7 @@ class OrderController extends Controller
     	$jam_antar = \Request::input('jam_antar');
     	$jam_ambil = \Request::input('jam_ambil');
     	$longitude = \Request::input('longitude');
-    	$lattitude = \Request::input('lattitude');
+    	$latitude = \Request::input('latitude');
     	$tipe = \Request::input('tipe');
     	$id_penyedia = \Request::input('id_penyedia');
         
@@ -41,7 +41,7 @@ class OrderController extends Controller
         $order->jam_antar = $jam_antar;
         $order->jam_ambil = $jam_ambil;
         $order->longitude = $longitude;
-        $order->lattitude = $lattitude;
+        $order->latitude = $latitude;
         $order->id_penyedia = $id_penyedia;
         $order->status = '0';
 
