@@ -25,54 +25,27 @@ class PenyediaController extends Controller
     }
 
     /*
-    * Mengubah status order menjadi accepted
-    * order tertentu berdsarkan orderid dan penyedia tertentu yang melakukan accept
-    */
-    function acceptOrder($type) {
-    	$order_id = \Request::input('order_id');
-    	$token = \Request::input('token');
-
-    	$data = JSON_decode(app('App\Http\Controllers\UserController')->getData($token));
-
-    	$user = \App\User::where("id", "=", $data->id)->first();
-
-    	$order = \App\Order::where("status", "=", "0")->where("id", "=", $order_id)->first();
-
-    	if($order == "") {
-    		return JSON_encode(['status' => '0']);
-    	}
-
-    	$order->id_penyedia = $user->id_penyedia;
-        $order->status = '2';
-
-    	if($type == "sandbox" || $order->save()) {
-            return JSON_encode(['status' => '1']);
-        }
-
-    	return JSON_encode(['status' => '0']);
-    }
-
-    /*
-    * mengubah order menjadi statusnya jadi ongoing
+    * mengubah status order
     * sekaligus mengubah berat laundry pada order
     */
-    function takeOrder($type) {
+    function changeOrder($type) {
     	$order_id = \Request::input('order_id');
     	$berat = \Request::input('berat');
+        $status = \Request::input('status');
     	$token = \Request::input('token');
 
     	$data = JSON_decode(app('App\Http\Controllers\UserController')->getData($token));
 
     	$user = \App\User::where("id", "=", $data->id)->first();
 
-    	$order = \App\Order::where("status", "=", "2")->where("id_penyedia", "=", $user->id_penyedia)->where("id", "=", $order_id)->first();
+    	$order = \App\Order::where("id_penyedia", "=", $user->id_penyedia)->where("id", "=", $order_id)->first();
 
     	if($order == "") {
     		return JSON_encode(['status' => '0']);
     	}
 
-    	$order->status = '3';
-    	$order->berat = $berat;
+    	$order->status = $status;
+    	if($berat != "" && $berat != null) $order->berat = $berat;
 
 
     	if($type == "sandbox" || $order->save()) {

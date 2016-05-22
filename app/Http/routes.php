@@ -30,8 +30,7 @@ Route::post('/{type}/getOrderById/', 'OrderController@getOrderById');
 Route::post('/{type}/getPendingOrder/', 'OrderController@getPendingOrder');
 
 
-Route::post('/{type}/acceptOrder/', 'PenyediaController@acceptOrder');
-Route::post('/{type}/takeOrder/', 'PenyediaController@takeOrder');
+Route::post('/{type}/changeOrder/', 'PenyediaController@changeOrder');
 Route::post('/{type}/getLaundry/', 'PenyediaController@getPenyedia');
 Route::post('/{type}/getDetailsLaundry/', 'PenyediaController@getDetails');
 
