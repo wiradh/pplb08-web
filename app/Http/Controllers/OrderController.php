@@ -35,6 +35,8 @@ class OrderController extends Controller
     	$latitude = \Request::input('latitude');
     	$tipe = \Request::input('tipe');
     	$id_penyedia = \Request::input('id_penyedia');
+
+        $laundry = \App\Laundry::where("id", "=", $id_penyedia)->first();
         
         $order = new \App\Order();
         $order->id_pelanggan = $id_pelanggan;
@@ -44,6 +46,9 @@ class OrderController extends Controller
         $order->latitude = $latitude;
         $order->id_penyedia = $id_penyedia;
         $order->status = '0';
+        $order->nama_pelanggan = $user->name;
+        $order->nama_laundry = $laundry->nama;
+
 
         if($type == 'sandbox' || $order->save()) {
             return JSON_encode(['status' => '1']);
