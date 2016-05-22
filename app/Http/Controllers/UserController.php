@@ -112,13 +112,15 @@ class UserController extends Controller
 
         if($user == "") return JSON_encode(['status' => '0']);
 
-        $nama = \Request::input('nama');
-        $alamat = \Request::input('alamat');
-        $foto = \Request::input('foto');
+        $name = \Request::input('name');
+        $email = \Request::input('email');
+        $password = \Request::input('password');
+        $nomor_hp = \Request::input('nomor_hp');
         
-        $user->nama = $nama;
-        $user->alamat = $alamat;
-        $user->foto = $foto;
+        $user->email = $email;
+        $user->nomor_hp = $nomor_hp;
+        $user->remember_token = "";
+        if($password != null && $password != "") $user->password = \Hash::make('password');
 
 
         return JSON_encode(['status' => '1']);

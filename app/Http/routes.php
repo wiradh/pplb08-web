@@ -40,3 +40,5 @@ Route::post('/{type}/getCompletedOrderByPenyedia/', 'OrderController@getComplete
 Route::post('/{type}/setStatusOrderCancelByPengorder/', 'OrderController@setStatusOrderCancelByPengorder');
 
 Route::post('/{type}/changeOrder/', 'OrderController@changeOrder');
+
+Route::get('/page/help/', function() {return "ini adalah helppage, sisanya akan kami edit lebih lanjut";});

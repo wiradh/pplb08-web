@@ -9,6 +9,7 @@
     <hr/>
 
     {{createAPI("getDetails", array('token' => 'yPtUr1xcENVlBTv9+5+FP85eUiWqUhLzSQpWS0ppRe4=', 'id' => '3'))}}
+    {{createAPI("setDetails", array('token' => 'yPtUr1xcENVlBTv9+5+FP85eUiWqUhLzSQpWS0ppRe4=', 'name' => 'wiradh', 'password' => 'asdfqwer', 'email' => 'wira@wira.com', 'nomor_hp' => '12345'))}}
 
     <hr/>
 
@@ -18,7 +19,7 @@
 
     {{createAPI("order", array('token' => 'yPtUr1xcENVlBTv9+5+FP85eUiWqUhLzSQpWS0ppRe4=', 'jam_antar' => '12.00', 'jam_ambil' => '13.00', 'longitude' => '212', 'latitude' => '11', 'detail_lokasi' => 'rumah biru', 'harga' => '120000 ', 'tipe' => '1', 'id_penyedia' => '2'))}}
 
-    {{createAPI("changeOrder", array('order_id' => '1', 'status' => '2', 'token' => 'MUNGn9\/8WwSnE\/UWytq1HN4Geur3nbZa0c7WkIeuHXM='))}}
+    {{createAPI("changeOrder", array('order_id' => '2', 'status' => '2', 'token' => 'MUNGn9\/8WwSnE\/UWytq1HN4Geur3nbZa0c7WkIeuHXM='))}}
 
 
 
