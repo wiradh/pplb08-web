@@ -35,6 +35,7 @@ class OrderController extends Controller
     	$latitude = \Request::input('latitude');
     	$tipe = \Request::input('tipe');
     	$id_penyedia = \Request::input('id_penyedia');
+        $harga = \Request::input('harga');
 
         $detail_lokasi = \Request::input('detail_lokasi');
 
@@ -47,6 +48,7 @@ class OrderController extends Controller
         $order->longitude = $longitude;
         $order->latitude = $latitude;
         $order->id_penyedia = $id_penyedia;
+        $order->harga = $harga;
         $order->status = '0';
         $order->nama_pelanggan = $user->name;
         $order->nama_laundry = $laundry->nama;
