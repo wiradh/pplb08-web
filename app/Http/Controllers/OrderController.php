@@ -36,7 +36,7 @@ class OrderController extends Controller
     	$tipe = \Request::input('tipe');
     	$id_penyedia = \Request::input('id_penyedia');
 
-        $laundry = \App\Laundry::where("id", "=", $id_penyedia)->first();
+        $laundry = \App\Penyedia::where("id", "=", $id_penyedia)->first();
         
         $order = new \App\Order();
         $order->id_pelanggan = $id_pelanggan;
