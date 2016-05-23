@@ -46,7 +46,12 @@ class PenyediaController extends Controller
 
     	$order->status = $status;
         if($status == "2" || $status == "3") $order->id_penyedia = $user->id_penyedia;
-    	if($berat != "" && $berat != null) $order->berat = $berat;
+
+        $penyedia = \App\Penyedia::where("id", "=" , $user->id_penyedia)->first();
+    	if($status == "3") {
+            $order->berat = $berat;
+            $order->harga = $berat * $penyedia->harga;
+        }
 
 
     	if($type == "sandbox" || $order->save()) {
